@@ -304,11 +304,11 @@ public partial class CustomerRentalBookingControl : UserControl
 
                 if (chkReserveWithoutPayment != null && chkReserveWithoutPayment.Checked)
                 {
-                    db.CreateRentalWithoutPayment(rentalID, ssn, selectedVehicleID, paymentID, startDate, endDate, cost);
+                    db.CreateRentalWithoutPaymentCustomer(rentalID, ssn, selectedVehicleID, paymentID, startDate, endDate, cost);
                 }
                 else
                 {
-                    db.CreateRentalWithPayment(rentalID, ssn, selectedVehicleID, paymentID, startDate, endDate, cost);
+                    db.CreateRentalWithPaymentCustomer(rentalID, ssn, selectedVehicleID, paymentID, startDate, endDate, cost);
                 }
 
                 MessageBox.Show(

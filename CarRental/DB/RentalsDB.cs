@@ -101,8 +101,36 @@ public class RentalsDB
     {
         try
         {
+            // Non-admin flow: use InsertRental which doesn't require EmployeeID
+            CreateRental(rentalID, ssn, vehicleID, paymentID, startDate, endDate, amount);
+            ConfirmPayment(rentalID);
+        }
+        catch
+        {
+            throw;
+        }
+    }
+
+    public void CreateRentalWithoutPayment(int rentalID, int ssn, int vehicleID, int paymentID, string startDate, string endDate, int amount)
+    {
+        try
+        {
+            // Non-admin flow: use InsertRental which doesn't require EmployeeID
+            CreateRental(rentalID, ssn, vehicleID, paymentID, startDate, endDate, amount);
+        }
+        catch
+        {
+            throw;
+        }
+    }
+
+    // Admin overloads that accept an employeeID and record it in RentsOut
+    public void CreateRentalWithPayment(int rentalID, int ssn, int vehicleID, int paymentID, string startDate, string endDate, int amount, int employeeID)
+    {
+        try
+        {
             using var conn = new SqlConnection(DBHelper.ConnStr);
-            using var cmd = new SqlCommand("InsertRentalWithPayment", conn)
+            using var cmd = new SqlCommand("InsertRentalWithoutPayment", conn)
             {
                 CommandType = CommandType.StoredProcedure
             };
@@ -110,10 +138,9 @@ public class RentalsDB
             cmd.Parameters.Add("@RentalID", SqlDbType.Int).Value = rentalID;
             cmd.Parameters.Add("@SSN", SqlDbType.Int).Value = ssn;
             cmd.Parameters.Add("@VehicleID", SqlDbType.Int).Value = vehicleID;
-            cmd.Parameters.Add("@PaymentID", SqlDbType.Int).Value = paymentID;
             cmd.Parameters.Add("@StartDate", SqlDbType.VarChar).Value = startDate;
             cmd.Parameters.Add("@EndDate", SqlDbType.VarChar).Value = endDate;
-            cmd.Parameters.Add("@Amount", SqlDbType.Int).Value = amount;
+            cmd.Parameters.Add("@EmployeeID", SqlDbType.VarChar, 10).Value = employeeID.ToString();
 
             conn.Open();
             cmd.ExecuteNonQuery();
@@ -126,12 +153,12 @@ public class RentalsDB
         }
     }
 
-    public void CreateRentalWithoutPayment(int rentalID, int ssn, int vehicleID, int paymentID, string startDate, string endDate, int amount)
+    public void CreateRentalWithoutPayment(int rentalID, int ssn, int vehicleID, int paymentID, string startDate, string endDate, int amount, int employeeID)
     {
         try
         {
             using var conn = new SqlConnection(DBHelper.ConnStr);
-            using var cmd = new SqlCommand("InsertRentalWithPayment", conn)
+            using var cmd = new SqlCommand("InsertRentalWithoutPayment", conn)
             {
                 CommandType = CommandType.StoredProcedure
             };
@@ -139,10 +166,9 @@ public class RentalsDB
             cmd.Parameters.Add("@RentalID", SqlDbType.Int).Value = rentalID;
             cmd.Parameters.Add("@SSN", SqlDbType.Int).Value = ssn;
             cmd.Parameters.Add("@VehicleID", SqlDbType.Int).Value = vehicleID;
-            cmd.Parameters.Add("@PaymentID", SqlDbType.Int).Value = paymentID;
             cmd.Parameters.Add("@StartDate", SqlDbType.VarChar).Value = startDate;
             cmd.Parameters.Add("@EndDate", SqlDbType.VarChar).Value = endDate;
-            cmd.Parameters.Add("@Amount", SqlDbType.Int).Value = amount;
+            cmd.Parameters.Add("@EmployeeID", SqlDbType.VarChar, 10).Value = employeeID.ToString();
 
             conn.Open();
             cmd.ExecuteNonQuery();

@@ -63,6 +63,7 @@ public partial class LoginForm : Form
             if (string.Equals(role, "Admin", StringComparison.OrdinalIgnoreCase))
             {
                 var adminForm = new AdminForm();
+                adminForm.SetEmployeeID(ssn);
                 adminForm.Show();
                 Hide();
                 return;

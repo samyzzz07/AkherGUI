@@ -12,6 +12,7 @@ public partial class RentalControl : UserControl
     private RentalsDB db = new RentalsDB();
     private int selectedVehicleID = -1;
     private int selectedDailyRate = 0;
+    private int _employeeID;
 
     public RentalControl()
     {
@@ -21,6 +22,11 @@ public partial class RentalControl : UserControl
         Load += RentalControl_Load;
         DataRefreshNotifier.DataChanged += HandleDataChanged;
         Disposed += (_, _) => DataRefreshNotifier.DataChanged -= HandleDataChanged;
+    }
+
+    public RentalControl(int employeeID) : this()
+    {
+        _employeeID = employeeID;
     }
     
 
@@ -281,11 +287,25 @@ public partial class RentalControl : UserControl
 
             if (chkReserveWithoutPayment.Checked)
             {
-                db.CreateRentalWithoutPayment(rentalID, ssn, selectedVehicleID, paymentID, startDate, endDate, cost);
+                if (_employeeID != 0)
+                {
+                    db.CreateRentalWithoutPayment(rentalID, ssn, selectedVehicleID, paymentID, startDate, endDate, cost, _employeeID);
+                }
+                else
+                {
+                    db.CreateRentalWithoutPayment(rentalID, ssn, selectedVehicleID, paymentID, startDate, endDate, cost);
+                }
             }
             else
             {
-                db.CreateRentalWithPayment(rentalID, ssn, selectedVehicleID, paymentID, startDate, endDate, cost);
+                if (_employeeID != 0)
+                {
+                    db.CreateRentalWithPayment(rentalID, ssn, selectedVehicleID, paymentID, startDate, endDate, cost, _employeeID);
+                }
+                else
+                {
+                    db.CreateRentalWithPayment(rentalID, ssn, selectedVehicleID, paymentID, startDate, endDate, cost);
+                }
             }
 
             MessageBox.Show(

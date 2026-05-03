@@ -9,10 +9,21 @@ public partial class AdminForm : Form
     private readonly DashboardControl _dashboardControl;
     private readonly FleetControl _fleetControl;
     private readonly CustomersControl _customersControl;
-    private readonly RentalControl _rentalControl;
+    private RentalControl _rentalControl;
     private readonly ReturnsControl _returnsControl;
     private readonly SuppliersControl _suppliersControl;
     private readonly ReportsControl _reportsControl;
+
+    private int _employeeID;
+
+    public void SetEmployeeID(int employeeId)
+    {
+        _employeeID = employeeId;
+        if (_rentalControl != null)
+        {
+            _rentalControl = new RentalControl(_employeeID);
+        }
+    }
 
     public AdminForm()
     {
@@ -22,7 +33,7 @@ public partial class AdminForm : Form
         _dashboardControl = new DashboardControl();
         _fleetControl = new FleetControl();
         _customersControl = new CustomersControl();
-        _rentalControl = new RentalControl();
+        _rentalControl = null; // lazy-create when employee ID is set
         _returnsControl = new ReturnsControl();
         _suppliersControl = new SuppliersControl();
         _reportsControl = new ReportsControl();
@@ -104,7 +115,15 @@ public partial class AdminForm : Form
     private void btnDashboard_Click(object sender, EventArgs e) => ShowPanel(_dashboardControl, btnDashboard);
     private void btnFleet_Click(object sender, EventArgs e) => ShowPanel(_fleetControl, btnFleet);
     private void btnCustomers_Click(object sender, EventArgs e) => ShowPanel(_customersControl, btnCustomers);
-    private void btnRentals_Click(object sender, EventArgs e) => ShowPanel(_rentalControl, btnRentals);
+    private void btnRentals_Click(object sender, EventArgs e)
+    {
+        if (_rentalControl == null)
+        {
+            _rentalControl = new RentalControl(_employeeID);
+        }
+
+        ShowPanel(_rentalControl, btnRentals);
+    }
     private void btnReturns_Click(object sender, EventArgs e) => ShowPanel(_returnsControl, btnReturns);
     private void btnSuppliers_Click(object sender, EventArgs e) => ShowPanel(_suppliersControl, btnSuppliers);
     private void btnReports_Click(object sender, EventArgs e) => ShowPanel(_reportsControl, btnReports);

@@ -161,28 +161,11 @@ public class CustomerPortalDB
         }
     }
 
-    public void CreateRentalWithPayment(int rentalID, int ssn, int vehicleID, int paymentID, string startDate, string endDate, int amount)
+    public void CreateRentalWithPaymentCustomer(int rentalID, int ssn, int vehicleID, int paymentID, string startDate, string endDate, int amount)
     {
         try
         {
-            using var conn = new SqlConnection(DBHelper.ConnStr);
-            using var cmd = new SqlCommand("InsertRentalWithPayment", conn)
-            {
-                CommandType = System.Data.CommandType.StoredProcedure
-            };
-
-            cmd.Parameters.Add("@RentalID", SqlDbType.Int).Value = rentalID;
-            cmd.Parameters.Add("@SSN", SqlDbType.Int).Value = ssn;
-            cmd.Parameters.Add("@VehicleID", SqlDbType.Int).Value = vehicleID;
-            cmd.Parameters.Add("@PaymentID", SqlDbType.Int).Value = paymentID;
-            cmd.Parameters.Add("@StartDate", SqlDbType.VarChar).Value = startDate;
-            cmd.Parameters.Add("@EndDate", SqlDbType.VarChar).Value = endDate;
-            cmd.Parameters.Add("@Amount", SqlDbType.Int).Value = amount;
-
-            conn.Open();
-            cmd.ExecuteNonQuery();
-            ConfirmPayment(rentalID);
-            DataRefreshNotifier.NotifyDataChanged();
+            CreateRental(rentalID, ssn, vehicleID, paymentID, startDate, endDate, amount);
         }
         catch
         {
@@ -190,12 +173,12 @@ public class CustomerPortalDB
         }
     }
 
-    public void CreateRentalWithoutPayment(int rentalID, int ssn, int vehicleID, int paymentID, string startDate, string endDate, int amount)
+    public void CreateRentalWithoutPaymentCustomer(int rentalID, int ssn, int vehicleID, int paymentID, string startDate, string endDate, int amount)
     {
         try
         {
             using var conn = new SqlConnection(DBHelper.ConnStr);
-            using var cmd = new SqlCommand("InsertRentalWithPayment", conn)
+            using var cmd = new SqlCommand("InsertRentalWithoutPaymentCustomer", conn)
             {
                 CommandType = System.Data.CommandType.StoredProcedure
             };
@@ -203,10 +186,8 @@ public class CustomerPortalDB
             cmd.Parameters.Add("@RentalID", SqlDbType.Int).Value = rentalID;
             cmd.Parameters.Add("@SSN", SqlDbType.Int).Value = ssn;
             cmd.Parameters.Add("@VehicleID", SqlDbType.Int).Value = vehicleID;
-            cmd.Parameters.Add("@PaymentID", SqlDbType.Int).Value = paymentID;
             cmd.Parameters.Add("@StartDate", SqlDbType.VarChar).Value = startDate;
             cmd.Parameters.Add("@EndDate", SqlDbType.VarChar).Value = endDate;
-            cmd.Parameters.Add("@Amount", SqlDbType.Int).Value = amount;
 
             conn.Open();
             cmd.ExecuteNonQuery();
