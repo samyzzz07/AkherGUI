@@ -38,9 +38,10 @@ partial class FamilyForm
         // 
         lblTitle.AutoSize = true;
         lblTitle.Font = new Font("Segoe UI", 14F, FontStyle.Bold);
+        lblTitle.ForeColor = Color.White;
         lblTitle.Location = new Point(18, 14);
         lblTitle.Name = "lblTitle";
-        lblTitle.Size = new Size(136, 32);
+        lblTitle.Size = new Size(161, 32);
         lblTitle.TabIndex = 0;
         lblTitle.Text = "Insert Family";
         // 
@@ -48,14 +49,18 @@ partial class FamilyForm
         // 
         lblFamily.AutoSize = true;
         lblFamily.Font = new Font("Segoe UI", 9F);
+        lblFamily.ForeColor = SystemColors.Window;
         lblFamily.Location = new Point(20, 68);
         lblFamily.Name = "lblFamily";
-        lblFamily.Size = new Size(88, 20);
+        lblFamily.Size = new Size(102, 20);
         lblFamily.TabIndex = 1;
         lblFamily.Text = "Vehicle Family";
         // 
         // txtFamily
         // 
+        txtFamily.BackColor = Color.FromArgb(15, 15, 22);
+        txtFamily.BorderStyle = BorderStyle.FixedSingle;
+        txtFamily.ForeColor = SystemColors.Window;
         txtFamily.Location = new Point(20, 92);
         txtFamily.Name = "txtFamily";
         txtFamily.Size = new Size(320, 27);
@@ -65,14 +70,18 @@ partial class FamilyForm
         // 
         lblBrand.AutoSize = true;
         lblBrand.Font = new Font("Segoe UI", 9F);
+        lblBrand.ForeColor = SystemColors.Window;
         lblBrand.Location = new Point(20, 132);
         lblBrand.Name = "lblBrand";
-        lblBrand.Size = new Size(75, 20);
+        lblBrand.Size = new Size(92, 20);
         lblBrand.TabIndex = 3;
         lblBrand.Text = "Brand Name";
         // 
         // txtBrand
         // 
+        txtBrand.BackColor = Color.FromArgb(15, 15, 22);
+        txtBrand.BorderStyle = BorderStyle.FixedSingle;
+        txtBrand.ForeColor = SystemColors.Window;
         txtBrand.Location = new Point(20, 156);
         txtBrand.Name = "txtBrand";
         txtBrand.Size = new Size(320, 27);
@@ -93,7 +102,9 @@ partial class FamilyForm
         // btnCancel
         // 
         btnCancel.BackColor = Color.FromArgb(90, 90, 100);
+        btnCancel.FlatAppearance.BorderSize = 0;
         btnCancel.FlatStyle = FlatStyle.Flat;
+        btnCancel.ForeColor = SystemColors.Window;
         btnCancel.Location = new Point(264, 200);
         btnCancel.Name = "btnCancel";
         btnCancel.Size = new Size(80, 36);
@@ -106,6 +117,7 @@ partial class FamilyForm
         // 
         AutoScaleDimensions = new SizeF(8F, 20F);
         AutoScaleMode = AutoScaleMode.Font;
+        BackColor = Color.FromArgb(15, 15, 22);
         ClientSize = new Size(364, 254);
         Controls.Add(btnCancel);
         Controls.Add(btnSave);

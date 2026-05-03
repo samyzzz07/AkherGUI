@@ -52,7 +52,11 @@ public class CustomerPortalDB
         {
             using var conn = new SqlConnection(DBHelper.ConnStr);
             using var cmd = new SqlCommand(
-                "SELECT R.RentalID, P.* FROM Payment P JOIN RentalDetails RD ON P.PaymentID = RD.PaymentID JOIN Rental R ON RD.RentalID = R.RentalID WHERE P.Status_ = 0 AND R.SSN = @SSN",
+                @"SELECT RD.RentalID, P.PaymentID, P.Date_, P.Amount, P.Status_
+                  FROM Rental R
+                  INNER JOIN RentalDetails RD ON R.RentalID = RD.RentalID
+                  INNER JOIN Payment P ON RD.PaymentID = P.PaymentID
+                  WHERE P.Status_ = 0 AND R.SSN = @SSN",
                 conn);
             cmd.Parameters.Add("@SSN", SqlDbType.Int).Value = ssn;
 
@@ -166,6 +170,7 @@ public class CustomerPortalDB
         try
         {
             CreateRental(rentalID, ssn, vehicleID, paymentID, startDate, endDate, amount);
+            ConfirmPayment(rentalID);
         }
         catch
         {
@@ -177,27 +182,15 @@ public class CustomerPortalDB
     {
         try
         {
-            using var conn = new SqlConnection(DBHelper.ConnStr);
-            using var cmd = new SqlCommand("InsertRentalWithoutPaymentCustomer", conn)
-            {
-                CommandType = System.Data.CommandType.StoredProcedure
-            };
-
-            cmd.Parameters.Add("@RentalID", SqlDbType.Int).Value = rentalID;
-            cmd.Parameters.Add("@SSN", SqlDbType.Int).Value = ssn;
-            cmd.Parameters.Add("@VehicleID", SqlDbType.Int).Value = vehicleID;
-            cmd.Parameters.Add("@StartDate", SqlDbType.VarChar).Value = startDate;
-            cmd.Parameters.Add("@EndDate", SqlDbType.VarChar).Value = endDate;
-
-            conn.Open();
-            cmd.ExecuteNonQuery();
-            DataRefreshNotifier.NotifyDataChanged();
+            // Create rental with payment record (Status = 0 for unpaid)
+            CreateRental(rentalID, ssn, vehicleID, paymentID, startDate, endDate, amount);
         }
         catch
         {
             throw;
         }
     }
+
 
     public void DeleteRental(int rentalID)
     {

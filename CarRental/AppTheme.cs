@@ -65,16 +65,4 @@ public static class AppTheme
         dgv.ReadOnly = true;
     }
 
-    public static void StyleActionButton(Button btn, bool enabled = true)
-    {
-        btn.BackColor = enabled ? Accent : Color.FromArgb(200, 200, 200);
-        btn.ForeColor = Color.White;
-        btn.FlatAppearance.BorderSize = 0;
-        btn.FlatStyle = FlatStyle.Flat;
-        btn.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-        btn.Height = 36;
-        btn.Cursor = enabled ? Cursors.Hand : Cursors.Default;
-        btn.Enabled = enabled;
-        btn.FlatAppearance.MouseOverBackColor = enabled ? AccentHover : Color.FromArgb(180, 180, 180);
-    }
 }

@@ -129,22 +129,14 @@ public class RentalsDB
     {
         try
         {
+            CreateRental(rentalID, ssn, vehicleID, paymentID, startDate, endDate, amount);
+            ConfirmPayment(rentalID);
             using var conn = new SqlConnection(DBHelper.ConnStr);
-            using var cmd = new SqlCommand("InsertRentalWithoutPayment", conn)
-            {
-                CommandType = CommandType.StoredProcedure
-            };
-
-            cmd.Parameters.Add("@RentalID", SqlDbType.Int).Value = rentalID;
-            cmd.Parameters.Add("@SSN", SqlDbType.Int).Value = ssn;
+            using var cmd = new SqlCommand("INSERT INTO RentsOut (EmployeeID, VehicleID) VALUES (@EmployeeID, @VehicleID)", conn);
+            cmd.Parameters.Add("@EmployeeID", SqlDbType.Int).Value = employeeID;
             cmd.Parameters.Add("@VehicleID", SqlDbType.Int).Value = vehicleID;
-            cmd.Parameters.Add("@StartDate", SqlDbType.VarChar).Value = startDate;
-            cmd.Parameters.Add("@EndDate", SqlDbType.VarChar).Value = endDate;
-            cmd.Parameters.Add("@EmployeeID", SqlDbType.VarChar, 10).Value = employeeID.ToString();
-
             conn.Open();
             cmd.ExecuteNonQuery();
-            ConfirmPayment(rentalID);
             DataRefreshNotifier.NotifyDataChanged();
         }
         catch
@@ -157,19 +149,11 @@ public class RentalsDB
     {
         try
         {
+            CreateRental(rentalID, ssn, vehicleID, paymentID, startDate, endDate, amount);
             using var conn = new SqlConnection(DBHelper.ConnStr);
-            using var cmd = new SqlCommand("InsertRentalWithoutPayment", conn)
-            {
-                CommandType = CommandType.StoredProcedure
-            };
-
-            cmd.Parameters.Add("@RentalID", SqlDbType.Int).Value = rentalID;
-            cmd.Parameters.Add("@SSN", SqlDbType.Int).Value = ssn;
+            using var cmd = new SqlCommand("INSERT INTO RentsOut (EmployeeID, VehicleID) VALUES (@EmployeeID, @VehicleID)", conn);
+            cmd.Parameters.Add("@EmployeeID", SqlDbType.Int).Value = employeeID;
             cmd.Parameters.Add("@VehicleID", SqlDbType.Int).Value = vehicleID;
-            cmd.Parameters.Add("@StartDate", SqlDbType.VarChar).Value = startDate;
-            cmd.Parameters.Add("@EndDate", SqlDbType.VarChar).Value = endDate;
-            cmd.Parameters.Add("@EmployeeID", SqlDbType.VarChar, 10).Value = employeeID.ToString();
-
             conn.Open();
             cmd.ExecuteNonQuery();
             DataRefreshNotifier.NotifyDataChanged();

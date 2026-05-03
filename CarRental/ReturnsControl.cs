@@ -164,8 +164,10 @@ public partial class ReturnsControl : UserControl
 
         var hasVehicleID = TryGetInt(row, "VehicleID", out var vehicleID);
         var hasPaymentID = TryGetInt(row, "PaymentID", out var paymentID);
+        var startDate = TryGetCellText(row, "StartDate", out var startText) ? startText : string.Empty;
+        var endDate = TryGetCellText(row, "EndDate", out var endText) ? endText : string.Empty;
 
-        if (!hasVehicleID || !hasPaymentID)
+        if (!hasVehicleID || !hasPaymentID || string.IsNullOrWhiteSpace(startDate) || string.IsNullOrWhiteSpace(endDate))
         {
             try
             {
@@ -193,12 +195,17 @@ public partial class ReturnsControl : UserControl
 
                 if (!hasPaymentID && !int.TryParse(detailRow["PaymentID"]?.ToString() ?? string.Empty, out paymentID))
                 {
-                    MessageBox.Show(
-                        "Could not retrieve PaymentID.",
-                        "Process Return",
-                        MessageBoxButtons.OK,
-                        MessageBoxIcon.Warning);
-                    return;
+                    paymentID = 0;
+                }
+
+                if (string.IsNullOrWhiteSpace(startDate))
+                {
+                    startDate = detailRow["StartDate"]?.ToString() ?? string.Empty;
+                }
+
+                if (string.IsNullOrWhiteSpace(endDate))
+                {
+                    endDate = detailRow["EndDate"]?.ToString() ?? string.Empty;
                 }
             }
             catch (Exception ex)
@@ -212,11 +219,29 @@ public partial class ReturnsControl : UserControl
             }
         }
 
+        int? finalPaymentID = hasPaymentID && paymentID > 0 ? paymentID : null;
+        int? amount = null;
+
+        if (!finalPaymentID.HasValue)
+        {
+            if (string.IsNullOrWhiteSpace(startDate) || string.IsNullOrWhiteSpace(endDate))
+            {
+                MessageBox.Show(
+                    "Could not determine rental dates for unpaid return processing.",
+                    "Process Return",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning);
+                return;
+            }
+
+            amount = db.CalculateRentalCost(vehicleID, startDate, endDate);
+        }
+
         var customerName = TryGetCellText(row, "CustomerName", out var customerText) ? customerText : string.Empty;
         var vehicleModel = TryGetCellText(row, "VehicleModel", out var vehicleText) ? vehicleText : string.Empty;
 
         var result = MessageBox.Show(
-            $"Confirm return for {customerName} - {vehicleModel}?",
+            $"Confirm return for {customerName} - {vehicleModel}?\n\n(Payment will be confirmed if unpaid, then vehicle will be returned)",
             "Confirm Return",
             MessageBoxButtons.YesNo,
             MessageBoxIcon.Question);
@@ -228,12 +253,13 @@ public partial class ReturnsControl : UserControl
 
         try
         {
-            db.ConfirmReturn(rentalID, vehicleID, paymentID);
+            db.ConfirmReturn(rentalID, vehicleID, finalPaymentID, amount);
             MessageBox.Show(
-                "Return processed successfully",
+                "Return processed successfully - payment confirmed and vehicle returned",
                 "Returns",
                 MessageBoxButtons.OK,
                 MessageBoxIcon.Information);
+            LoadReturns();
         }
         catch (Exception ex)
         {
