@@ -84,7 +84,7 @@ partial class CustomerEditForm
         // 
         // pnlTitle
         // 
-        pnlTitle.BackColor = Color.FromArgb(45, 27, 105);
+        pnlTitle.BackColor = Color.FromArgb(0, 210, 190);
         pnlTitle.Controls.Add(lblTitle);
         pnlTitle.Dock = DockStyle.Top;
         pnlTitle.Location = new Point(0, 0);
@@ -106,7 +106,7 @@ partial class CustomerEditForm
         // 
         // pnlForm
         // 
-        pnlForm.BackColor = Color.FromArgb(248, 247, 255);
+        pnlForm.BackColor = Color.FromArgb(15, 15, 22);
         pnlForm.Controls.Add(tblForm);
         pnlForm.Controls.Add(pnlButtons);
         pnlForm.Dock = DockStyle.Fill;
@@ -167,7 +167,7 @@ partial class CustomerEditForm
         // 
         lblSSN.Dock = DockStyle.Fill;
         lblSSN.Font = new Font("Segoe UI", 9F);
-        lblSSN.ForeColor = Color.FromArgb(124, 58, 237);
+        lblSSN.ForeColor = Color.FromArgb(0, 210, 190);
         lblSSN.Location = new Point(3, 0);
         lblSSN.Name = "lblSSN";
         lblSSN.Padding = new Padding(0, 0, 9, 0);
@@ -178,9 +178,11 @@ partial class CustomerEditForm
         // 
         // txtSSN
         // 
+        txtSSN.BackColor = Color.FromArgb(15, 15, 22);
         txtSSN.BorderStyle = BorderStyle.FixedSingle;
         txtSSN.Dock = DockStyle.Fill;
         txtSSN.Font = new Font("Segoe UI", 10F);
+        txtSSN.ForeColor = SystemColors.Window;
         txtSSN.Location = new Point(217, 8);
         txtSSN.Margin = new Padding(3, 8, 3, 8);
         txtSSN.Name = "txtSSN";
@@ -191,7 +193,7 @@ partial class CustomerEditForm
         // 
         lblName.Dock = DockStyle.Fill;
         lblName.Font = new Font("Segoe UI", 9F);
-        lblName.ForeColor = Color.FromArgb(124, 58, 237);
+        lblName.ForeColor = Color.FromArgb(0, 210, 190);
         lblName.Location = new Point(3, 51);
         lblName.Name = "lblName";
         lblName.Padding = new Padding(0, 0, 9, 0);
@@ -202,9 +204,11 @@ partial class CustomerEditForm
         // 
         // txtName
         // 
+        txtName.BackColor = Color.FromArgb(15, 15, 22);
         txtName.BorderStyle = BorderStyle.FixedSingle;
         txtName.Dock = DockStyle.Fill;
         txtName.Font = new Font("Segoe UI", 10F);
+        txtName.ForeColor = SystemColors.Window;
         txtName.Location = new Point(217, 59);
         txtName.Margin = new Padding(3, 8, 3, 8);
         txtName.Name = "txtName";
@@ -215,7 +219,7 @@ partial class CustomerEditForm
         // 
         lblEmail.Dock = DockStyle.Fill;
         lblEmail.Font = new Font("Segoe UI", 9F);
-        lblEmail.ForeColor = Color.FromArgb(124, 58, 237);
+        lblEmail.ForeColor = Color.FromArgb(0, 210, 190);
         lblEmail.Location = new Point(3, 102);
         lblEmail.Name = "lblEmail";
         lblEmail.Padding = new Padding(0, 0, 9, 0);
@@ -226,9 +230,11 @@ partial class CustomerEditForm
         // 
         // txtEmail
         // 
+        txtEmail.BackColor = Color.FromArgb(15, 15, 22);
         txtEmail.BorderStyle = BorderStyle.FixedSingle;
         txtEmail.Dock = DockStyle.Fill;
         txtEmail.Font = new Font("Segoe UI", 10F);
+        txtEmail.ForeColor = SystemColors.Window;
         txtEmail.Location = new Point(217, 110);
         txtEmail.Margin = new Padding(3, 8, 3, 8);
         txtEmail.Name = "txtEmail";
@@ -239,7 +245,7 @@ partial class CustomerEditForm
         // 
         lblPhone.Dock = DockStyle.Fill;
         lblPhone.Font = new Font("Segoe UI", 9F);
-        lblPhone.ForeColor = Color.FromArgb(124, 58, 237);
+        lblPhone.ForeColor = Color.FromArgb(0, 210, 190);
         lblPhone.Location = new Point(3, 153);
         lblPhone.Name = "lblPhone";
         lblPhone.Padding = new Padding(0, 0, 9, 0);
@@ -250,9 +256,11 @@ partial class CustomerEditForm
         // 
         // txtPhone
         // 
+        txtPhone.BackColor = Color.FromArgb(15, 15, 22);
         txtPhone.BorderStyle = BorderStyle.FixedSingle;
         txtPhone.Dock = DockStyle.Fill;
         txtPhone.Font = new Font("Segoe UI", 10F);
+        txtPhone.ForeColor = SystemColors.Window;
         txtPhone.Location = new Point(217, 161);
         txtPhone.Margin = new Padding(3, 8, 3, 8);
         txtPhone.Name = "txtPhone";
@@ -263,7 +271,7 @@ partial class CustomerEditForm
         // 
         lblBirth.Dock = DockStyle.Fill;
         lblBirth.Font = new Font("Segoe UI", 9F);
-        lblBirth.ForeColor = Color.FromArgb(124, 58, 237);
+        lblBirth.ForeColor = Color.FromArgb(0, 210, 190);
         lblBirth.Location = new Point(3, 204);
         lblBirth.Name = "lblBirth";
         lblBirth.Padding = new Padding(0, 0, 9, 0);
@@ -286,7 +294,7 @@ partial class CustomerEditForm
         // 
         lblDLN.Dock = DockStyle.Fill;
         lblDLN.Font = new Font("Segoe UI", 9F);
-        lblDLN.ForeColor = Color.FromArgb(124, 58, 237);
+        lblDLN.ForeColor = Color.FromArgb(0, 210, 190);
         lblDLN.Location = new Point(3, 255);
         lblDLN.Name = "lblDLN";
         lblDLN.Padding = new Padding(0, 0, 9, 0);
@@ -297,9 +305,11 @@ partial class CustomerEditForm
         // 
         // txtDLN
         // 
+        txtDLN.BackColor = Color.FromArgb(15, 15, 22);
         txtDLN.BorderStyle = BorderStyle.FixedSingle;
         txtDLN.Dock = DockStyle.Fill;
         txtDLN.Font = new Font("Segoe UI", 10F);
+        txtDLN.ForeColor = SystemColors.Window;
         txtDLN.Location = new Point(217, 263);
         txtDLN.Margin = new Padding(3, 8, 3, 8);
         txtDLN.Name = "txtDLN";
@@ -310,7 +320,7 @@ partial class CustomerEditForm
         // 
         lblHouseNo.Dock = DockStyle.Fill;
         lblHouseNo.Font = new Font("Segoe UI", 9F);
-        lblHouseNo.ForeColor = Color.FromArgb(124, 58, 237);
+        lblHouseNo.ForeColor = Color.FromArgb(0, 210, 190);
         lblHouseNo.Location = new Point(3, 306);
         lblHouseNo.Name = "lblHouseNo";
         lblHouseNo.Padding = new Padding(0, 0, 9, 0);
@@ -321,9 +331,11 @@ partial class CustomerEditForm
         // 
         // txtHouseNo
         // 
+        txtHouseNo.BackColor = Color.FromArgb(15, 15, 22);
         txtHouseNo.BorderStyle = BorderStyle.FixedSingle;
         txtHouseNo.Dock = DockStyle.Fill;
         txtHouseNo.Font = new Font("Segoe UI", 10F);
+        txtHouseNo.ForeColor = SystemColors.Window;
         txtHouseNo.Location = new Point(217, 314);
         txtHouseNo.Margin = new Padding(3, 8, 3, 8);
         txtHouseNo.Name = "txtHouseNo";
@@ -334,7 +346,7 @@ partial class CustomerEditForm
         // 
         lblStreet.Dock = DockStyle.Fill;
         lblStreet.Font = new Font("Segoe UI", 9F);
-        lblStreet.ForeColor = Color.FromArgb(124, 58, 237);
+        lblStreet.ForeColor = Color.FromArgb(0, 210, 190);
         lblStreet.Location = new Point(3, 357);
         lblStreet.Name = "lblStreet";
         lblStreet.Padding = new Padding(0, 0, 9, 0);
@@ -345,9 +357,11 @@ partial class CustomerEditForm
         // 
         // txtStreet
         // 
+        txtStreet.BackColor = Color.FromArgb(15, 15, 22);
         txtStreet.BorderStyle = BorderStyle.FixedSingle;
         txtStreet.Dock = DockStyle.Fill;
         txtStreet.Font = new Font("Segoe UI", 10F);
+        txtStreet.ForeColor = SystemColors.Window;
         txtStreet.Location = new Point(217, 365);
         txtStreet.Margin = new Padding(3, 8, 3, 8);
         txtStreet.Name = "txtStreet";
@@ -358,7 +372,7 @@ partial class CustomerEditForm
         // 
         lblDistrict.Dock = DockStyle.Fill;
         lblDistrict.Font = new Font("Segoe UI", 9F);
-        lblDistrict.ForeColor = Color.FromArgb(124, 58, 237);
+        lblDistrict.ForeColor = Color.FromArgb(0, 210, 190);
         lblDistrict.Location = new Point(3, 408);
         lblDistrict.Name = "lblDistrict";
         lblDistrict.Padding = new Padding(0, 0, 9, 0);
@@ -369,9 +383,11 @@ partial class CustomerEditForm
         // 
         // txtDistrict
         // 
+        txtDistrict.BackColor = Color.FromArgb(15, 15, 22);
         txtDistrict.BorderStyle = BorderStyle.FixedSingle;
         txtDistrict.Dock = DockStyle.Fill;
         txtDistrict.Font = new Font("Segoe UI", 10F);
+        txtDistrict.ForeColor = SystemColors.Window;
         txtDistrict.Location = new Point(217, 416);
         txtDistrict.Margin = new Padding(3, 8, 3, 8);
         txtDistrict.Name = "txtDistrict";
@@ -382,7 +398,7 @@ partial class CustomerEditForm
         // 
         lblCity.Dock = DockStyle.Fill;
         lblCity.Font = new Font("Segoe UI", 9F);
-        lblCity.ForeColor = Color.FromArgb(124, 58, 237);
+        lblCity.ForeColor = Color.FromArgb(0, 210, 190);
         lblCity.Location = new Point(3, 459);
         lblCity.Name = "lblCity";
         lblCity.Padding = new Padding(0, 0, 9, 0);
@@ -393,9 +409,11 @@ partial class CustomerEditForm
         // 
         // txtCity
         // 
+        txtCity.BackColor = Color.FromArgb(15, 15, 22);
         txtCity.BorderStyle = BorderStyle.FixedSingle;
         txtCity.Dock = DockStyle.Fill;
         txtCity.Font = new Font("Segoe UI", 10F);
+        txtCity.ForeColor = SystemColors.Window;
         txtCity.Location = new Point(217, 467);
         txtCity.Margin = new Padding(3, 8, 3, 8);
         txtCity.Name = "txtCity";
@@ -404,8 +422,10 @@ partial class CustomerEditForm
         // 
         // txtPassword
         // 
+        txtPassword.BackColor = Color.FromArgb(15, 15, 22);
         txtPassword.BorderStyle = BorderStyle.FixedSingle;
         txtPassword.Font = new Font("Segoe UI", 10F);
+        txtPassword.ForeColor = SystemColors.Window;
         txtPassword.Location = new Point(217, 509);
         txtPassword.Margin = new Padding(3, 8, 3, 8);
         txtPassword.Name = "txtPassword";
@@ -416,7 +436,7 @@ partial class CustomerEditForm
         // lblPassword
         // 
         lblPassword.Font = new Font("Segoe UI", 9F);
-        lblPassword.ForeColor = Color.FromArgb(124, 58, 237);
+        lblPassword.ForeColor = Color.FromArgb(0, 210, 190);
         lblPassword.ImageAlign = ContentAlignment.TopCenter;
         lblPassword.Location = new Point(3, 501);
         lblPassword.Name = "lblPassword";
@@ -442,7 +462,9 @@ partial class CustomerEditForm
         // btnCancel
         // 
         btnCancel.DialogResult = DialogResult.Cancel;
+        btnCancel.FlatAppearance.BorderSize = 0;
         btnCancel.FlatStyle = FlatStyle.Flat;
+        btnCancel.ForeColor = SystemColors.Window;
         btnCancel.Location = new Point(449, 0);
         btnCancel.Margin = new Padding(3, 0, 0, 0);
         btnCancel.Name = "btnCancel";
@@ -453,10 +475,10 @@ partial class CustomerEditForm
         // 
         // btnSave
         // 
-        btnSave.BackColor = Color.FromArgb(216, 90, 48);
+        btnSave.BackColor = Color.FromArgb(0, 210, 190);
         btnSave.FlatAppearance.BorderSize = 0;
         btnSave.FlatStyle = FlatStyle.Flat;
-        btnSave.ForeColor = Color.White;
+        btnSave.ForeColor = Color.FromArgb(15, 15, 22);
         btnSave.Location = new Point(315, 0);
         btnSave.Margin = new Padding(0, 0, 9, 0);
         btnSave.Name = "btnSave";
